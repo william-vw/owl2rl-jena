@@ -9,10 +9,10 @@ import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.reasoner.rulesys.GenericRuleReasoner;
 import org.apache.jena.reasoner.rulesys.Rule;
 
-public class OntologyReasoning {
+public class OWL2RL {
 
 	public static void main(String[] args) throws Exception {
-		ClassLoader clsLoader = OntologyReasoning.class.getClassLoader();
+		ClassLoader clsLoader = OWL2RL.class.getClassLoader();
 
 		Model model = ModelFactory.createDefaultModel();
 		model.read(clsLoader.getResourceAsStream("pizza.owl"), "", "N3");

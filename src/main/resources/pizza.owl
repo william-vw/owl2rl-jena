@@ -202,8 +202,7 @@
 
 ###  https://pizza.org/ontology#DominosTunaPizza
 :DominosTunaPizza rdf:type owl:NamedIndividual ;
-                  :hasTopping :DominosMozzarellaTopping ,
-                              :DominosTomatoTopping ,
+                  :hasTopping :DominosTomatoTopping ,
                               :DominosTunaTopping .
 
 
