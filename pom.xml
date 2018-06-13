@@ -1,0 +1,18 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>wvw</groupId>
+	<artifactId>owl2rl-jena</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>OWL2 RL for Apache Jena</name>
+	<description>An example project using an OWL2 RL ruleset for ontology-based reasoning in Apache Jena.</description>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.jena</groupId>
+			<artifactId>apache-jena-libs</artifactId>
+			<version>3.7.0</version>
+			<type>pom</type>
+		</dependency>
+	</dependencies>
+</project>

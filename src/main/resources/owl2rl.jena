@@ -1,0 +1,692 @@
+[R0: 
+(?s ?p ?o)
+->
+(?s <http://www.w3.org/2002/07/owl#sameAs> ?s)
+(?p <http://www.w3.org/2002/07/owl#sameAs> ?p)
+(?o <http://www.w3.org/2002/07/owl#sameAs> ?o)
+]
+
+[R1: 
+(?x <http://www.w3.org/2002/07/owl#sameAs> ?y)
+->
+(?y <http://www.w3.org/2002/07/owl#sameAs> ?x)
+]
+
+[R2: 
+(?x <http://www.w3.org/2002/07/owl#sameAs> ?y)
+(?y <http://www.w3.org/2002/07/owl#sameAs> ?z)
+->
+(?x <http://www.w3.org/2002/07/owl#sameAs> ?z)
+]
+
+[R3: 
+(?s <http://www.w3.org/2002/07/owl#sameAs> ?s2)
+(?s ?p ?o)
+->
+(?s2 ?p ?o)
+]
+
+[R4: 
+(?p <http://www.w3.org/2002/07/owl#sameAs> ?p2)
+(?s ?p ?o)
+->
+(?s ?p2 ?o)
+]
+
+[R5: 
+(?o <http://www.w3.org/2002/07/owl#sameAs> ?o2)
+(?s ?p ?o)
+->
+(?s ?p ?o2)
+]
+
+[R6: 
+(?x <http://www.w3.org/2002/07/owl#sameAs> ?y)
+(?x <http://www.w3.org/2002/07/owl#differentFrom> ?y)
+->
+(<http://spinrdf.org/spin#constraintViolation_differentFrom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://spinrdf.org/spin#ConstraintViolation>)
+(<http://spinrdf.org/spin#constraintViolation_differentFrom> <http://spinrdf.org/spin#violationRoot> ?x)
+(<http://spinrdf.org/spin#constraintViolation_differentFrom> <http://spinrdf.org/spin#violationPath> <http://www.w3.org/2002/07/owl#sameAs>)
+(<http://spinrdf.org/spin#constraintViolation_differentFrom> <http://www.w3.org/2000/01/rdf-schema#label> "Violates <http://www.w3.org/2002/07/owl#differentFrom>")
+]
+
+[R7: 
+(?x <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AllDifferent>)
+(?x <http://www.w3.org/2002/07/owl#members> ?list)
+(?list <http://niche.cs.dal.ca/owl/list#hasMember> ?y1)
+(?list <http://niche.cs.dal.ca/owl/list#hasMember> ?y2)
+notEqual(?y1,?y2)
+(?y1 <http://www.w3.org/2002/07/owl#sameAs> ?y2)
+->
+(<http://spinrdf.org/spin#constraintViolation_allDifferent> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://spinrdf.org/spin#ConstraintViolation>)
+(<http://spinrdf.org/spin#constraintViolation_allDifferent> <http://spinrdf.org/spin#violationRoot> ?y1)
+(<http://spinrdf.org/spin#constraintViolation_allDifferent> <http://spinrdf.org/spin#violationPath> <http://www.w3.org/2002/07/owl#members>)
+(<http://spinrdf.org/spin#constraintViolation_allDifferent> <http://www.w3.org/2000/01/rdf-schema#label> "Violation of <http://www.w3.org/2002/07/owl#AllDifferent>")
+]
+
+[R8: 
+(?x <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AllDifferent>)
+(?x <http://www.w3.org/2002/07/owl#distinctMembers> ?list)
+(?list <http://niche.cs.dal.ca/owl/list#hasMember> ?y1)
+(?list <http://niche.cs.dal.ca/owl/list#hasMember> ?y2)
+notEqual(?y1,?y2)
+(?y1 <http://www.w3.org/2002/07/owl#sameAs> ?y2)
+->
+(<http://spinrdf.org/spin#constraintViolation_allDifferent> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://spinrdf.org/spin#ConstraintViolation>)
+(<http://spinrdf.org/spin#constraintViolation_allDifferent> <http://spinrdf.org/spin#violationRoot> ?y1)
+(<http://spinrdf.org/spin#constraintViolation_allDifferent> <http://spinrdf.org/spin#violationPath> <http://www.w3.org/2002/07/owl#distinctMembers>)
+(<http://spinrdf.org/spin#constraintViolation_allDifferent> <http://www.w3.org/2000/01/rdf-schema#label> "Violation of <http://www.w3.org/2002/07/owl#AllDifferent>")
+]
+
+[R9: 
+(?p <http://www.w3.org/2000/01/rdf-schema#domain> ?c)
+(?x ?p ?y)
+->
+(?x <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?c)
+]
+
+[R10: 
+(?p <http://www.w3.org/2000/01/rdf-schema#range> ?c)
+(?x ?p ?y)
+->
+(?y <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?c)
+]
+
+[R11: 
+(?p <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty>)
+(?x ?p ?y1)
+(?x ?p ?y2)
+notEqual(?y1,?y2)
+->
+(?y1 <http://www.w3.org/2002/07/owl#sameAs> ?y2)
+]
+
+[R12: 
+(?p <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#InverseFunctionalProperty>)
+(?x1 ?p ?y)
+(?x2 ?p ?y)
+notEqual(?x1,?x2)
+->
+(?x1 <http://www.w3.org/2002/07/owl#sameAs> ?x2)
+]
+
+[R13: 
+(?p <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#IrreflexiveProperty>)
+(?x ?p ?x)
+->
+(<http://spinrdf.org/spin#constraintViolation_irreflexiveProperty> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://spinrdf.org/spin#ConstraintViolation>)
+(<http://spinrdf.org/spin#constraintViolation_irreflexiveProperty> <http://spinrdf.org/spin#violationRoot> ?x)
+(<http://spinrdf.org/spin#constraintViolation_irreflexiveProperty> <http://spinrdf.org/spin#violationPath> ?p)
+(<http://spinrdf.org/spin#constraintViolation_irreflexiveProperty> <http://www.w3.org/2000/01/rdf-schema#label> "Irreflexive property")
+]
+
+[R14: 
+(?p <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#SymmetricProperty>)
+(?x ?p ?y)
+->
+(?y ?p ?x)
+]
+
+[R15: 
+(?p <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AsymmetricProperty>)
+(?x ?p ?y)
+(?y ?p ?x)
+->
+(<http://spinrdf.org/spin#constraintViolation_asymmetricProperty> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://spinrdf.org/spin#ConstraintViolation>)
+(<http://spinrdf.org/spin#constraintViolation_asymmetricProperty> <http://spinrdf.org/spin#violationRoot> ?x)
+(<http://spinrdf.org/spin#constraintViolation_asymmetricProperty> <http://spinrdf.org/spin#violationPath> ?p)
+(<http://spinrdf.org/spin#constraintViolation_asymmetricProperty> <http://www.w3.org/2000/01/rdf-schema#label> "Asymmetric property")
+]
+
+[R16: 
+(?p <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#TransitiveProperty>)
+(?x ?p ?y)
+(?y ?p ?z)
+->
+(?x ?p ?z)
+]
+
+[R17: 
+(?p1 <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> ?p2)
+(?x ?p1 ?y)
+->
+(?x ?p2 ?y)
+]
+
+[R18: 
+(?p1 <http://www.w3.org/2002/07/owl#equivalentProperty> ?p2)
+(?x ?p1 ?y)
+->
+(?x ?p2 ?y)
+]
+
+[R19: 
+(?p1 <http://www.w3.org/2002/07/owl#equivalentProperty> ?p2)
+(?x ?p2 ?y)
+->
+(?x ?p1 ?y)
+]
+
+[R20: 
+(?p1 <http://www.w3.org/2002/07/owl#propertyDisjointWith> ?p2)
+(?x ?p1 ?y)
+(?x ?p2 ?y)
+->
+(<http://spinrdf.org/spin#constraintViolation_propertyDisjointWith> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://spinrdf.org/spin#ConstraintViolation>)
+(<http://spinrdf.org/spin#constraintViolation_propertyDisjointWith> <http://spinrdf.org/spin#violationRoot> ?x)
+(<http://spinrdf.org/spin#constraintViolation_propertyDisjointWith> <http://spinrdf.org/spin#violationPath> ?p1)
+(<http://spinrdf.org/spin#constraintViolation_propertyDisjointWith> <http://www.w3.org/2000/01/rdf-schema#label> "Property declared disjoint with")
+]
+
+[R21: 
+(?z <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AllDisjointProperties>)
+(?z <http://www.w3.org/2002/07/owl#members> ?members)
+(?members <http://niche.cs.dal.ca/owl/list#hasMember> ?p1)
+(?members <http://niche.cs.dal.ca/owl/list#hasMember> ?p2)
+notEqual(?p1,?p2)
+(?x ?p1 ?y)
+(?x ?p2 ?y)
+->
+(<http://spinrdf.org/spin#constraintViolation_allDisjointProperties> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://spinrdf.org/spin#ConstraintViolation>)
+(<http://spinrdf.org/spin#constraintViolation_allDisjointProperties> <http://spinrdf.org/spin#violationRoot> ?x)
+(<http://spinrdf.org/spin#constraintViolation_allDisjointProperties> <http://spinrdf.org/spin#violationPath> ?p1)
+(<http://spinrdf.org/spin#constraintViolation_allDisjointProperties> <http://www.w3.org/2000/01/rdf-schema#label> "Violation of <http://www.w3.org/2002/07/owl#AllDisjointProperties>")
+]
+
+[R22: 
+(?p1 <http://www.w3.org/2002/07/owl#inverseOf> ?p2)
+(?x ?p1 ?y)
+->
+(?y ?p2 ?x)
+]
+
+[R23: 
+(?p1 <http://www.w3.org/2002/07/owl#inverseOf> ?p2)
+(?x ?p2 ?y)
+->
+(?y ?p1 ?x)
+]
+
+[R24: 
+(?x <http://www.w3.org/2002/07/owl#sourceIndividual> ?i1)
+(?x <http://www.w3.org/2002/07/owl#assertionProperty> ?p)
+(?x <http://www.w3.org/2002/07/owl#targetIndividual> ?i2)
+(?i1 ?p ?i2)
+->
+(<http://spinrdf.org/spin#constraintViolation_negativePropertyAssertion> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://spinrdf.org/spin#ConstraintViolation>)
+(<http://spinrdf.org/spin#constraintViolation_negativePropertyAssertion> <http://spinrdf.org/spin#violationRoot> ?i1)
+(<http://spinrdf.org/spin#constraintViolation_negativePropertyAssertion> <http://spinrdf.org/spin#violationPath> ?p)
+(<http://spinrdf.org/spin#constraintViolation_negativePropertyAssertion> <http://www.w3.org/2000/01/rdf-schema#label> "Negative Property Assertion")
+]
+
+[R25: 
+(?x <http://www.w3.org/2002/07/owl#sourceIndividual> ?i)
+(?x <http://www.w3.org/2002/07/owl#assertionProperty> ?p)
+(?x <http://www.w3.org/2002/07/owl#targetValue> ?lt)
+(?i ?p ?lt)
+->
+(<http://spinrdf.org/spin#constraintViolation_negativePropertyAssertion> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://spinrdf.org/spin#ConstraintViolation>)
+(<http://spinrdf.org/spin#constraintViolation_negativePropertyAssertion> <http://spinrdf.org/spin#violationRoot> ?i)
+(<http://spinrdf.org/spin#constraintViolation_negativePropertyAssertion> <http://spinrdf.org/spin#violationPath> ?p)
+(<http://spinrdf.org/spin#constraintViolation_negativePropertyAssertion> <http://www.w3.org/2000/01/rdf-schema#label> "Negative Property Assertion")
+]
+
+[R26: 
+(?x <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Nothing>)
+->
+(<http://spinrdf.org/spin#constraintViolation_nothingType> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://spinrdf.org/spin#ConstraintViolation>)
+(<http://spinrdf.org/spin#constraintViolation_nothingType> <http://spinrdf.org/spin#violationRoot> ?x)
+(<http://spinrdf.org/spin#constraintViolation_nothingType> <http://www.w3.org/2000/01/rdf-schema#label> "Resource with type Nothing")
+]
+
+[R27: 
+(?c <http://www.w3.org/2002/07/owl#intersectionOf> ?x)
+(?x <http://niche.cs.dal.ca/owl/list#hasMember> ?ci)
+(?y <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?c)
+->
+(?y <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?ci)
+]
+
+[R28: 
+(?c <http://www.w3.org/2002/07/owl#unionOf> ?x)
+(?x <http://niche.cs.dal.ca/owl/list#hasMember> ?ci)
+(?y <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?ci)
+->
+(?y <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?c)
+]
+
+[R29: 
+(?c1 <http://www.w3.org/2002/07/owl#complementOf> ?c2)
+(?x <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?c1)
+(?x <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?c2)
+->
+(<http://spinrdf.org/spin#constraintViolation_disjointClass> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://spinrdf.org/spin#ConstraintViolation>)
+(<http://spinrdf.org/spin#constraintViolation_disjointClass> <http://spinrdf.org/spin#violationRoot> ?x)
+(<http://spinrdf.org/spin#constraintViolation_disjointClass> <http://spinrdf.org/spin#violationPath> <http://www.w3.org/2002/07/owl#complementOf>)
+(<http://spinrdf.org/spin#constraintViolation_disjointClass> <http://www.w3.org/2000/01/rdf-schema#label> "Resource is instance of two disjoint classes")
+]
+
+[R30: 
+(?x <http://www.w3.org/2002/07/owl#someValuesFrom> ?y)
+(?x <http://www.w3.org/2002/07/owl#onProperty> ?p)
+(?u ?p ?v)
+(?v <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?y)
+->
+(?u <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?x)
+]
+
+[R31: 
+(?x <http://www.w3.org/2002/07/owl#someValuesFrom> <http://www.w3.org/2002/07/owl#Thing>)
+(?x <http://www.w3.org/2002/07/owl#onProperty> ?p)
+(?u ?p ?v)
+->
+(?u <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?x)
+]
+
+[R32: 
+(?x <http://www.w3.org/2002/07/owl#allValuesFrom> ?y)
+(?x <http://www.w3.org/2002/07/owl#onProperty> ?p)
+(?u <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?x)
+(?u ?p ?v)
+->
+(?v <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?y)
+]
+
+[R33: 
+(?x <http://www.w3.org/2002/07/owl#hasValue> ?y)
+(?x <http://www.w3.org/2002/07/owl#onProperty> ?p)
+(?u <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?x)
+->
+(?u ?p ?y)
+]
+
+[R34: 
+(?x <http://www.w3.org/2002/07/owl#hasValue> ?y)
+(?x <http://www.w3.org/2002/07/owl#onProperty> ?p)
+(?u ?p ?y)
+->
+(?u <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?x)
+]
+
+[R35: 
+(?x <http://www.w3.org/2002/07/owl#maxCardinality> "0"^^http://www.w3.org/2001/XMLSchema#nonNegativeInteger)
+(?x <http://www.w3.org/2002/07/owl#onProperty> ?p)
+(?u <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?x)
+(?u ?p ?y)
+->
+(<http://spinrdf.org/spin#constraintViolation_maxCardinality0> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://spinrdf.org/spin#ConstraintViolation>)
+(<http://spinrdf.org/spin#constraintViolation_maxCardinality0> <http://spinrdf.org/spin#violationRoot> ?x)
+(<http://spinrdf.org/spin#constraintViolation_maxCardinality0> <http://spinrdf.org/spin#violationPath> ?p)
+(<http://spinrdf.org/spin#constraintViolation_maxCardinality0> <http://www.w3.org/2000/01/rdf-schema#label> "<http://www.w3.org/2002/07/owl#maxCardinality> of 0")
+]
+
+[R36: 
+(?x <http://www.w3.org/2002/07/owl#maxCardinality> "1"^^http://www.w3.org/2001/XMLSchema#nonNegativeInteger)
+(?x <http://www.w3.org/2002/07/owl#onProperty> ?p)
+(?u <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?x)
+(?u ?p ?y1)
+(?u ?p ?y2)
+notEqual(?y1,?y2)
+->
+(?y1 <http://www.w3.org/2002/07/owl#sameAs> ?y2)
+]
+
+[R37: 
+(?x <http://www.w3.org/2002/07/owl#maxQualifiedCardinality> "0"^^http://www.w3.org/2001/XMLSchema#nonNegativeInteger)
+(?x <http://www.w3.org/2002/07/owl#onProperty> ?p)
+(?x <http://www.w3.org/2002/07/owl#onClass> ?c)
+(?u <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?x)
+(?u ?p ?y)
+(?y <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?c)
+->
+(<http://spinrdf.org/spin#constraintViolation_maxQualifiedCardinality0> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://spinrdf.org/spin#ConstraintViolation>)
+(<http://spinrdf.org/spin#constraintViolation_maxQualifiedCardinality0> <http://spinrdf.org/spin#violationRoot> ?x)
+(<http://spinrdf.org/spin#constraintViolation_maxQualifiedCardinality0> <http://spinrdf.org/spin#violationPath> ?p)
+(<http://spinrdf.org/spin#constraintViolation_maxQualifiedCardinality0> <http://www.w3.org/2000/01/rdf-schema#label> "Maximum qualified cardinality of 0")
+]
+
+[R38: 
+(?x <http://www.w3.org/2002/07/owl#maxQualifiedCardinality> "0"^^http://www.w3.org/2001/XMLSchema#nonNegativeInteger)
+(?x <http://www.w3.org/2002/07/owl#onProperty> ?p)
+(?x <http://www.w3.org/2002/07/owl#onClass> <http://www.w3.org/2002/07/owl#Thing>)
+(?u <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?x)
+(?u ?p ?y)
+->
+(<http://spinrdf.org/spin#constraintViolation_maxQualifiedCardinality0Thing> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://spinrdf.org/spin#ConstraintViolation>)
+(<http://spinrdf.org/spin#constraintViolation_maxQualifiedCardinality0Thing> <http://spinrdf.org/spin#violationRoot> ?u)
+(<http://spinrdf.org/spin#constraintViolation_maxQualifiedCardinality0Thing> <http://spinrdf.org/spin#violationPath> ?p)
+(<http://spinrdf.org/spin#constraintViolation_maxQualifiedCardinality0Thing> <http://www.w3.org/2000/01/rdf-schema#label> "Qualified max cardinality 0")
+]
+
+[R39: 
+(?x <http://www.w3.org/2002/07/owl#maxQualifiedCardinality> "1"^^http://www.w3.org/2001/XMLSchema#nonNegativeInteger)
+(?x <http://www.w3.org/2002/07/owl#onProperty> ?p)
+(?x <http://www.w3.org/2002/07/owl#onClass> ?c)
+(?u <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?x)
+(?u ?p ?y1)
+(?u ?p ?y2)
+notEqual(?y1,?y2)
+(?y1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?c)
+(?y2 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?c)
+->
+(?y1 <http://www.w3.org/2002/07/owl#sameAs> ?y2)
+]
+
+[R40: 
+(?x <http://www.w3.org/2002/07/owl#maxQualifiedCardinality> "1"^^http://www.w3.org/2001/XMLSchema#nonNegativeInteger)
+(?x <http://www.w3.org/2002/07/owl#onProperty> ?p)
+(?x <http://www.w3.org/2002/07/owl#onClass> <http://www.w3.org/2002/07/owl#Thing>)
+(?u <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?x)
+(?u ?p ?y1)
+(?u ?p ?y2)
+notEqual(?y1,?y2)
+->
+(?y1 <http://www.w3.org/2002/07/owl#sameAs> ?y2)
+]
+
+[R41: 
+(?c <http://www.w3.org/2002/07/owl#oneOf> ?x)
+(?x <http://niche.cs.dal.ca/owl/list#hasMember> ?yi)
+->
+(?yi <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?c)
+]
+
+[R42: 
+(?c1 <http://www.w3.org/2000/01/rdf-schema#subClassOf> ?c2)
+(?x <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?c1)
+->
+(?x <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?c2)
+]
+
+[R43: 
+(?c1 <http://www.w3.org/2002/07/owl#equivalentClass> ?c2)
+(?x <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?c1)
+->
+(?x <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?c2)
+]
+
+[R44: 
+(?c1 <http://www.w3.org/2002/07/owl#equivalentClass> ?c2)
+(?x <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?c2)
+->
+(?x <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?c1)
+]
+
+[R45: 
+(?c1 <http://www.w3.org/2002/07/owl#disjointWith> ?c2)
+(?x <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?c1)
+(?x <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?c2)
+->
+(<http://spinrdf.org/spin#constraintViolation_disjointClass> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://spinrdf.org/spin#ConstraintViolation>)
+(<http://spinrdf.org/spin#constraintViolation_disjointClass> <http://spinrdf.org/spin#violationRoot> ?x)
+(<http://spinrdf.org/spin#constraintViolation_disjointClass> <http://spinrdf.org/spin#violationPath> <http://www.w3.org/2002/07/owl#disjointWith>)
+(<http://spinrdf.org/spin#constraintViolation_disjointClass> <http://www.w3.org/2000/01/rdf-schema#label> "Resource is instance of two disjoint classes")
+]
+
+[R46: 
+(?y <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AllDisjointClasses>)
+(?y <http://www.w3.org/2002/07/owl#members> ?members)
+(?members <http://niche.cs.dal.ca/owl/list#hasMember> ?c1)
+(?members <http://niche.cs.dal.ca/owl/list#hasMember> ?c2)
+notEqual(?c1,?c2)
+(?x <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?c1)
+(?x <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?c2)
+->
+(<http://spinrdf.org/spin#constraintViolation_allDisjointClasses> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://spinrdf.org/spin#ConstraintViolation>)
+(<http://spinrdf.org/spin#constraintViolation_allDisjointClasses> <http://spinrdf.org/spin#violationRoot> ?x)
+(<http://spinrdf.org/spin#constraintViolation_allDisjointClasses> <http://www.w3.org/2000/01/rdf-schema#label> "Shared instance of classes from an AllDisjointClasses block")
+]
+
+[R47: 
+(?c <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>)
+->
+(?c <http://www.w3.org/2000/01/rdf-schema#subClassOf> ?c)
+(?c <http://www.w3.org/2002/07/owl#equivalentClass> ?c)
+(?c <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.w3.org/2002/07/owl#Thing>)
+(<http://www.w3.org/2002/07/owl#Nothing> <http://www.w3.org/2000/01/rdf-schema#subClassOf> ?c)
+]
+
+[R48: 
+(?c1 <http://www.w3.org/2000/01/rdf-schema#subClassOf> ?c2)
+(?c2 <http://www.w3.org/2000/01/rdf-schema#subClassOf> ?c3)
+->
+(?c1 <http://www.w3.org/2000/01/rdf-schema#subClassOf> ?c3)
+]
+
+[R49: 
+(?c1 <http://www.w3.org/2002/07/owl#equivalentClass> ?c2)
+->
+(?c1 <http://www.w3.org/2000/01/rdf-schema#subClassOf> ?c2)
+(?c2 <http://www.w3.org/2000/01/rdf-schema#subClassOf> ?c1)
+]
+
+[R50: 
+(?c1 <http://www.w3.org/2000/01/rdf-schema#subClassOf> ?c2)
+(?c2 <http://www.w3.org/2000/01/rdf-schema#subClassOf> ?c1)
+->
+(?c1 <http://www.w3.org/2002/07/owl#equivalentClass> ?c2)
+]
+
+[R51: 
+(?p <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty>)
+->
+(?p <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> ?p)
+(?p <http://www.w3.org/2002/07/owl#equivalentProperty> ?p)
+]
+
+[R52: 
+(?p <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty>)
+->
+(?p <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> ?p)
+(?p <http://www.w3.org/2002/07/owl#equivalentProperty> ?p)
+]
+
+[R53: 
+(?p1 <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> ?p2)
+(?p2 <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> ?p3)
+->
+(?p1 <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> ?p3)
+]
+
+[R54: 
+(?p1 <http://www.w3.org/2002/07/owl#equivalentProperty> ?p2)
+->
+(?p1 <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> ?p2)
+(?p2 <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> ?p1)
+]
+
+[R55: 
+(?p1 <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> ?p2)
+(?p2 <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> ?p1)
+->
+(?p1 <http://www.w3.org/2002/07/owl#equivalentProperty> ?p2)
+]
+
+[R56: 
+(?p <http://www.w3.org/2000/01/rdf-schema#domain> ?c1)
+(?c1 <http://www.w3.org/2000/01/rdf-schema#subClassOf> ?c2)
+->
+(?p <http://www.w3.org/2000/01/rdf-schema#domain> ?c2)
+]
+
+[R57: 
+(?p2 <http://www.w3.org/2000/01/rdf-schema#domain> ?c)
+(?p1 <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> ?p2)
+->
+(?p1 <http://www.w3.org/2000/01/rdf-schema#domain> ?c)
+]
+
+[R58: 
+(?p <http://www.w3.org/2000/01/rdf-schema#range> ?c1)
+(?c1 <http://www.w3.org/2000/01/rdf-schema#subClassOf> ?c2)
+->
+(?p <http://www.w3.org/2000/01/rdf-schema#range> ?c2)
+]
+
+[R59: 
+(?p2 <http://www.w3.org/2000/01/rdf-schema#range> ?c)
+(?p1 <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> ?p2)
+->
+(?p1 <http://www.w3.org/2000/01/rdf-schema#range> ?c)
+]
+
+[R60: 
+(?c1 <http://www.w3.org/2002/07/owl#hasValue> ?i)
+(?c1 <http://www.w3.org/2002/07/owl#onProperty> ?p1)
+(?c2 <http://www.w3.org/2002/07/owl#hasValue> ?i)
+(?c2 <http://www.w3.org/2002/07/owl#onProperty> ?p2)
+(?p1 <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> ?p2)
+->
+(?c1 <http://www.w3.org/2000/01/rdf-schema#subClassOf> ?c2)
+]
+
+[R61: 
+(?c1 <http://www.w3.org/2002/07/owl#someValuesFrom> ?y1)
+(?c1 <http://www.w3.org/2002/07/owl#onProperty> ?p)
+(?c2 <http://www.w3.org/2002/07/owl#someValuesFrom> ?y2)
+(?c2 <http://www.w3.org/2002/07/owl#onProperty> ?p)
+(?y1 <http://www.w3.org/2000/01/rdf-schema#subClassOf> ?y2)
+->
+(?c1 <http://www.w3.org/2000/01/rdf-schema#subClassOf> ?c2)
+]
+
+[R62: 
+(?c1 <http://www.w3.org/2002/07/owl#someValuesFrom> ?y)
+(?c1 <http://www.w3.org/2002/07/owl#onProperty> ?p1)
+(?c2 <http://www.w3.org/2002/07/owl#someValuesFrom> ?y)
+(?c2 <http://www.w3.org/2002/07/owl#onProperty> ?p2)
+(?p1 <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> ?p2)
+->
+(?c1 <http://www.w3.org/2000/01/rdf-schema#subClassOf> ?c2)
+]
+
+[R63: 
+(?c1 <http://www.w3.org/2002/07/owl#allValuesFrom> ?y1)
+(?c1 <http://www.w3.org/2002/07/owl#onProperty> ?p)
+(?c2 <http://www.w3.org/2002/07/owl#allValuesFrom> ?y2)
+(?c2 <http://www.w3.org/2002/07/owl#onProperty> ?p)
+(?y1 <http://www.w3.org/2000/01/rdf-schema#subClassOf> ?y2)
+->
+(?c1 <http://www.w3.org/2000/01/rdf-schema#subClassOf> ?c2)
+]
+
+[R64: 
+(?c1 <http://www.w3.org/2002/07/owl#allValuesFrom> ?y)
+(?c1 <http://www.w3.org/2002/07/owl#onProperty> ?p1)
+(?c2 <http://www.w3.org/2002/07/owl#allValuesFrom> ?y)
+(?c2 <http://www.w3.org/2002/07/owl#onProperty> ?p2)
+(?p1 <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> ?p2)
+->
+(?c2 <http://www.w3.org/2000/01/rdf-schema#subClassOf> ?c1)
+]
+
+[R65: 
+(?c <http://www.w3.org/2002/07/owl#intersectionOf> ?x)
+(?x <http://niche.cs.dal.ca/owl/list#hasMember> ?cl)
+->
+(?c <http://www.w3.org/2000/01/rdf-schema#subClassOf> ?cl)
+]
+
+[R66: 
+(?c <http://www.w3.org/2002/07/owl#unionOf> ?x)
+(?x <http://niche.cs.dal.ca/owl/list#hasMember> ?cl)
+->
+(?cl <http://www.w3.org/2000/01/rdf-schema#subClassOf> ?c)
+]
+
+[R67: 
+(?l <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> ?m)
+->
+(?l <http://niche.cs.dal.ca/owl/list#hasMember> ?m)
+]
+
+[R68: 
+(?l1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> ?l2)
+(?l2 <http://niche.cs.dal.ca/owl/list#hasMember> ?m)
+->
+(?l1 <http://niche.cs.dal.ca/owl/list#hasMember> ?m)
+]
+
+[R69: 
+(?l <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> ?c)
+(?l <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil>)
+(?y <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?c)
+->
+(?y <http://niche.cs.dal.ca/owl/reasoning/inIntersection> ?l)
+]
+
+[R70: 
+(?l <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> ?c)
+(?l <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> ?l2)
+(?y <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?c)
+(?y <http://niche.cs.dal.ca/owl/reasoning/inIntersection> ?l2)
+->
+(?y <http://niche.cs.dal.ca/owl/reasoning/inIntersection> ?l)
+]
+
+[R71: 
+(?x <http://www.w3.org/2002/07/owl#intersectionOf> ?l)
+(?y <http://niche.cs.dal.ca/owl/reasoning/inIntersection> ?l)
+->
+(?y <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?x)
+]
+
+[R72: 
+(?l <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> ?p)
+(?l <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil>)
+(?x ?p ?z)
+(?y ?p ?z)
+->
+(?x <http://niche.cs.dal.ca/owl/reasoning/inKeyList> ?l)
+(?y <http://niche.cs.dal.ca/owl/reasoning/inKeyList> ?l)
+]
+
+[R73: 
+(?l <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> ?p)
+(?l <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> ?l2)
+(?x ?p ?z)
+(?y ?p ?z)
+(?x <http://niche.cs.dal.ca/owl/reasoning/inKeyList> ?l2)
+(?y <http://niche.cs.dal.ca/owl/reasoning/inKeyList> ?l2)
+->
+(?x <http://niche.cs.dal.ca/owl/reasoning/inKeyList> ?l)
+(?y <http://niche.cs.dal.ca/owl/reasoning/inKeyList> ?l)
+]
+
+[R74: 
+(?c <http://www.w3.org/2002/07/owl#hasKey> ?l)
+(?x <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?c)
+(?y <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?c)
+(?x <http://niche.cs.dal.ca/owl/reasoning/inKeyList> ?l)
+(?y <http://niche.cs.dal.ca/owl/reasoning/inKeyList> ?l)
+->
+(?x <http://www.w3.org/2002/07/owl#sameAs> ?y)
+]
+
+[R75: 
+(?l <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> ?p)
+(?l <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil>)
+(?u1 ?p ?u2)
+->
+(?u1 <http://niche.cs.dal.ca/owl/reasoning/inPropertyChain> ?l)
+(?u1 <http://niche.cs.dal.ca/owl/reasoning/lastChained> ?u2)
+]
+
+[R76: 
+(?l <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> ?p)
+(?l <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> ?l2)
+(?u1 ?p ?u2)
+(?u2 <http://niche.cs.dal.ca/owl/reasoning/inPropertyChain> ?l2)
+(?u2 <http://niche.cs.dal.ca/owl/reasoning/lastChained> ?ul)
+->
+(?u1 <http://niche.cs.dal.ca/owl/reasoning/inPropertyChain> ?l)
+(?u1 <http://niche.cs.dal.ca/owl/reasoning/lastChained> ?ul)
+]
+
+[R77: 
+(?p <http://www.w3.org/2002/07/owl#propertyChainAxiom> ?l)
+(?uf <http://niche.cs.dal.ca/owl/reasoning/inPropertyChain> ?l)
+(?uf <http://niche.cs.dal.ca/owl/reasoning/lastChained> ?ul)
+->
+(?uf ?p ?ul)
+]
