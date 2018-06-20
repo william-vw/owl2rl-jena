@@ -15,6 +15,7 @@ public class OWL2RL {
 		ClassLoader clsLoader = OWL2RL.class.getClassLoader();
 
 		Model model = ModelFactory.createDefaultModel();
+		model.read(clsLoader.getResourceAsStream("axioms.nt"), "", "N-TRIPLE");
 		model.read(clsLoader.getResourceAsStream("pizza.owl"), "", "N3");
 
 		Path path = Paths.get(clsLoader.getResource("owl2rl.jena").toURI());
